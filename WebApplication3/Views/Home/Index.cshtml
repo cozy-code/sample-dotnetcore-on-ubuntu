@@ -1,6 +1,14 @@
-﻿@{
+﻿@model List<WebApplication3.Models.Blog>
+@{
     ViewData["Title"] = "Home Page";
 }
+
+<ol>
+    @foreach (var blog in Model)
+    {
+        <li >@(blog.Url)</li>
+    }
+</ol>
 
 <div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
     <ol class="carousel-indicators">
