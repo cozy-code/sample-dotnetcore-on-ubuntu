@@ -16,6 +16,7 @@ namespace WebApplication3
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
+                .UseUrls("http://0.0.0.0:5000") // 公開設定
                 .UseApplicationInsights()
                 .Build();
 
