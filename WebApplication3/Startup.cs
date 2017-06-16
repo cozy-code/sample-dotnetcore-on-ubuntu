@@ -8,6 +8,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 
+using Microsoft.EntityFrameworkCore;
+using WebApplication3.Models;
+
 namespace WebApplication3
 {
     public class Startup
@@ -27,6 +30,7 @@ namespace WebApplication3
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<BloggingContext>(options => options.UseNpgsql(Configuration.GetConnectionString("BloggingDatabase")));
             // Add framework services.
             services.AddMvc();
         }

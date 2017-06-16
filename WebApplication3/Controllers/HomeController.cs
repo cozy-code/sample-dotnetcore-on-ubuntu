@@ -8,22 +8,23 @@ namespace WebApplication3.Controllers
 {
     public class HomeController : Controller
     {
+        private Models.BloggingContext db;
+        public HomeController(Models.BloggingContext context)
+        {
+            this.db = context;
+        }
         public IActionResult Index()
         {
-            using (var db = new Models.BloggingContext()){
-                var blogs = db.Blogs.OrderBy(b => b.Url).ToList();
-                return View(blogs);
-            }
+            var blogs = db.Blogs.OrderBy(b => b.Url).ToList();
+            return View(blogs);
         }
 
         public IActionResult About()
         {
             ViewData["Message"] = "Your application description page.";
-            using (var db = new Models.BloggingContext()){
-                var blog = new Models.Blog { Url = "http://sample.com/"+DateTime.UtcNow.ToString("yyyyMMdd_hhmmssms") };
-                db.Blogs.Add(blog);
-                db.SaveChanges();
-            }
+            var blog = new Models.Blog { Url = "http://sample.com/"+DateTime.UtcNow.ToString("yyyyMMdd_hhmmssms") };
+            db.Blogs.Add(blog);
+            db.SaveChanges();
             return View();
         }
 
