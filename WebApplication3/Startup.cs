@@ -59,6 +59,10 @@ namespace WebApplication3
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            using (var context = app.ApplicationServices.GetService<BloggingContext>()) {
+                context.Database.Migrate();
+            }
         }
     }
 }
