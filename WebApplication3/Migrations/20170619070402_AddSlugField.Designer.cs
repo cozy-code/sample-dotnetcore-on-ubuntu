@@ -8,9 +8,10 @@ using WebApplication3.Models;
 namespace WebApplication3.Migrations
 {
     [DbContext(typeof(BloggingContext))]
-    partial class BloggingContextModelSnapshot : ModelSnapshot
+    [Migration("20170619070402_AddSlugField")]
+    partial class AddSlugField
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
             modelBuilder
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
