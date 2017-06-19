@@ -31,6 +31,7 @@ namespace WebApplication3.Models
     {
         public int PostId { get; set; }
         public string Title { get; set; }
+        public string Slug { get; set; }
         public string Content { get; set; }
 
         public int BlogId { get; set; }
