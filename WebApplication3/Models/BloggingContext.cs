@@ -22,6 +22,7 @@ namespace WebApplication3.Models
     {
         public int BlogId { get; set; }
         public string Url { get; set; }
+        public string Description { get; set; }    //追加
         public int Rating { get; set; }
         public List<Post> Posts { get; set; }
     }
