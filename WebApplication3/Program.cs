@@ -9,14 +9,20 @@ namespace WebApplication3
 {
     public class Program
     {
+        // dotnet publish -r ubuntu.16.04-x64 -c Release
         public static void Main(string[] args)
         {
-            var host = new WebHostBuilder()
+            var hostBuilder = new WebHostBuilder();
+
+            var config = Startup.BulidConfiguration(Directory.GetCurrentDirectory(), hostBuilder.GetSetting("environment"));
+            var urls = config.GetSection("urls").Value;
+
+            var host=hostBuilder
                 .UseKestrel()
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseIISIntegration()
                 .UseStartup<Startup>()
-                .UseUrls("http://0.0.0.0:5000") // 公開設定
+                .UseUrls(urls) // 公開設定
                 .UseApplicationInsights()
                 .Build();
 

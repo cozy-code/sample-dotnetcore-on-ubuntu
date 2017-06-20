@@ -15,14 +15,18 @@ namespace WebApplication3
 {
     public class Startup
     {
+        public static IConfigurationRoot BulidConfiguration(string basePath,string EnvironmentName) {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(basePath)
+                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+                .AddJsonFile($"appsettings.{EnvironmentName}.json", optional: true)
+                .AddEnvironmentVariables();
+            return builder.Build();
+        }
+
         public Startup(IHostingEnvironment env)
         {
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true)
-                .AddEnvironmentVariables();
-            Configuration = builder.Build();
+            Configuration = BulidConfiguration(env.ContentRootPath, env.EnvironmentName);
         }
 
         public IConfigurationRoot Configuration { get; }
